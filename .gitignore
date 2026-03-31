@@ -3,6 +3,7 @@ bin/
 obj/
 
 # Rider / VS
+.vscode/
 .idea/
 .vs/
 *.suo
