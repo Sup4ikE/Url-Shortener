@@ -1,0 +1,159 @@
+@use '../urls/urls' as *;
+
+.topbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 16px 48px;
+  box-sizing: border-box;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.content {
+  max-width: 900px;
+  margin: 40px auto 0;
+  padding: 0 20px;
+}
+
+.back-link {
+  display: inline-block;
+  color: #555;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  margin-bottom: 32px;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #ffdc50;
+  }
+}
+
+.state-box {
+  margin-top: 80px;
+  text-align: center;
+  color: #333;
+  font-size: 13px;
+}
+
+.info-card {
+  border: 1px solid #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.info-header {
+  background: #111;
+  border-bottom: 1px solid #1a1a1a;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.badge {
+  background: #ffdc50;
+  color: #0a0a0a;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.info-title {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #444;
+}
+
+.info-grid {
+  padding: 8px 0;
+}
+
+.info-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 14px 24px;
+  border-bottom: 1px solid #111;
+  gap: 16px;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.label {
+  width: 130px;
+  flex-shrink: 0;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #444;
+  padding-top: 2px;
+}
+
+.value {
+  font-size: 13px;
+  color: #ccc;
+  word-break: break-all;
+
+  &.mono {
+    color: #ffdc50;
+    letter-spacing: 1px;
+  }
+
+  &.link {
+    color: #888;
+    text-decoration: none;
+
+    &:hover {
+      color: #ccc;
+    }
+  }
+}
+
+.row-flex {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.yellow {
+  color: #ffdc50 !important;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.copy-btn {
+  background: transparent;
+  border: 1px solid #2a2a2a;
+  border-radius: 4px;
+  color: #555;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: 0.2s;
+  white-space: nowrap;
+
+  &:hover {
+    color: #ffdc50;
+    border-color: #ffdc50;
+  }
+}

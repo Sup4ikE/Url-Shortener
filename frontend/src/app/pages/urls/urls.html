@@ -1,0 +1,97 @@
+<div class="page">
+  <nav class="nav">
+    <div class="brand">
+      <span class="brand-icon">⚡</span>
+      <span class="brand-name">SNIP</span>
+    </div>
+
+    <div class="nav-links">
+      <a routerLink="/urls" routerLinkActive="active">URLs</a>
+      <a href="http://localhost:5005/About">About</a>
+
+      <button class="btn-logout" (click)="logout()" *ngIf="isLoggedIn">Logout</button>
+
+      <a routerLink="/login" class="btn-nav-login" *ngIf="!isLoggedIn"> Login </a>
+    </div>
+  </nav>
+
+  <main class="content">
+    <div class="add-card" *ngIf="isLoggedIn">
+      <input [(ngModel)]="newUrl" placeholder="https://your-long-url.com" (keydown.enter)="add()" />
+      <button class="btn-add" (click)="add()" [disabled]="isAdding">
+        <span *ngIf="!isAdding">Shorten</span>
+        <span *ngIf="isAdding" class="spinner"></span>
+      </button>
+    </div>
+
+    <p class="add-error" *ngIf="addError">{{ addError }}</p>
+
+    <div class="table-wrap" *ngIf="urls.length > 0">
+      <table>
+        <thead>
+          <tr>
+            <th>Original URL</th>
+            <th>Short Code</th>
+            <th>Created</th>
+            <th>Info</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let url of urls" class="row">
+            <td class="original" [title]="url.originalUrl">
+              <a [href]="url.originalUrl" target="_blank" rel="noopener">
+                {{ url.originalUrl }}
+              </a>
+            </td>
+
+            <td class="code">
+              <div class="code-inner">
+                <a
+                  [href]="'http://localhost:5005/api/ShortUrl/r/' + url.shortCode"
+                  target="_blank"
+                  rel="noopener"
+                  class="short-link"
+                >
+                  {{ url.shortCode }}
+                </a>
+
+                <button class="copy-btn" (click)="copy(url.shortCode)" title="Copy">
+                  {{ copied === url.shortCode ? '✓' : '⎘' }}
+                </button>
+              </div>
+            </td>
+
+            <td class="date">
+              {{ url.createdDate | date: 'dd MMM yyyy' }}
+            </td>
+
+            <td>
+              <a class="nav-link" [routerLink]="['/urls', url.shortCode]">Info</a>
+            </td>
+
+            <td *ngIf="isLoggedIn">
+              <button
+                *ngIf="canDelete(url)"
+                class="btn-delete"
+                (click)="delete(url.shortCode)"
+                [disabled]="isDeleting(url.shortCode)"
+              >
+                {{ isDeleting(url.shortCode) ? '…' : 'Delete' }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="empty" *ngIf="urls.length === 0 && !loading">
+      <span>No URLs yet. Add your first one above.</span>
+    </div>
+
+    <div class="empty" *ngIf="loading">
+      <span class="spinner dark"></span>
+    </div>
+  </main>
+</div>
