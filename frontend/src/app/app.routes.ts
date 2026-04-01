@@ -5,7 +5,7 @@ import { UrlInfo } from './pages/url-info/url-info';
 import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'urls', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: Login },
   { path: 'urls', component: Urls },
   { path: 'urls/:code', component: UrlInfo, canActivate: [authGuard] },
