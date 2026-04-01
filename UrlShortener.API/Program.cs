@@ -6,6 +6,7 @@ using Microsoft.OpenApi.Models;
 using UrlShortener.Infrastructure;
 using UrlShortener.Core.Application.Interfaces;
 using UrlShortener.Core.Application.Services;
+using UrlShortener.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
+
+builder.Services.AddScoped<IShortUrlRepository, ShortUrlRepository>();
+builder.Services.AddScoped<IShortUrlService, ShortUrlService>();
+builder.Services.AddSingleton<ICodeGenerator, CodeGenerator>();
 
 // JWT Auth
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
