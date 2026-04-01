@@ -10,6 +10,12 @@ using UrlShortener.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
+}
+
 // Controllers
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
