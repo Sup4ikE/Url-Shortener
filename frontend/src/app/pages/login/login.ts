@@ -35,7 +35,8 @@ export class Login {
       .subscribe({
         next: (res) => {
           localStorage.setItem('token', res.token);
-          this.router.navigate(['/urls']);
+          this.loading = false;
+          this.router.navigateByUrl('/urls');
         },
         error: () => {
           this.error = 'Invalid login or password.';
