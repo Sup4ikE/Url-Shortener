@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Controllers
 builder.Services.AddControllers();
+builder.Services.AddRazorPages();
 
 // DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -82,21 +83,42 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngular",
+        policy =>
+        {
+            policy
+                .WithOrigins("http://localhost:4200")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
 // Authorization
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
 // Swagger middleware
-app.UseSwagger();
-app.UseSwaggerUI();
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 // Middlewares
 app.UseHttpsRedirection();
+
+app.UseStaticFiles();
+
+app.UseCors("AllowAngular"); 
 
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapRazorPages();
 
 app.Run();

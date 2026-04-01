@@ -1,0 +1,67 @@
+<div class="page">
+  <header class="topbar">
+    <div class="brand" routerLink="/urls" style="cursor: pointer">
+      <span class="brand-icon">⚡</span>
+      <span class="brand-name">SNIP</span>
+    </div>
+    <nav class="nav">
+      <a class="nav-link" routerLink="/urls" routerLinkActive="active">URLS</a>
+      <a class="nav-link" routerLink="/about" routerLinkActive="active">ABOUT</a>
+      <button class="btn-logout" (click)="logout()">Logout</button>
+    </nav>
+  </header>
+
+  <main class="content">
+    <a routerLink="/urls" class="back-link">← Back to table</a>
+
+    <div *ngIf="loading" class="state-box">
+      <span class="spinner dark"></span>
+    </div>
+
+    <div *ngIf="!loading && !url" class="state-box empty">URL not found.</div>
+
+    <div *ngIf="url" class="info-card">
+      <div class="info-header">
+        <span class="badge">{{ url.shortCode }}</span>
+        <span class="info-title">URL Details</span>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-row">
+          <span class="label">Original URL</span>
+          <a [href]="url.originalUrl" target="_blank" rel="noopener" class="value link">
+            {{ url.originalUrl }}
+          </a>
+        </div>
+        <div class="info-row">
+          <span class="label">Short Code</span>
+          <span class="value mono">{{ url.shortCode }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Short Link</span>
+          <div class="value row-flex">
+            <a
+              [href]="'http://localhost:5005/api/ShortUrl/r/' + url.shortCode"
+              target="_blank"
+              rel="noopener"
+              class="link yellow"
+            >
+              localhost:5005/r/{{ url.shortCode }}
+            </a>
+            <button class="copy-btn" (click)="copy()" title="Copy">
+              {{ copied ? '✓ Copied' : '⎘ Copy' }}
+            </button>
+          </div>
+        </div>
+        <div class="info-row">
+          <span class="label">Created By</span>
+          <span class="value">{{ url.createdByLogin }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Created Date</span>
+          <span class="value">{{ url.createdDate | date: 'dd MMM yyyy, HH:mm' }}</span>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

@@ -1,0 +1,31 @@
+<div class="login-wrap">
+  <div class="login-box">
+    <div class="brand">
+      <span class="brand-icon">⚡</span>
+      <span class="brand-name">SNIP</span>
+    </div>
+    <p class="brand-sub">URL Shortener</p>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="field">
+        <label>Login</label>
+        <input type="text" [(ngModel)]="login" name="login" required autocomplete="username" />
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          required
+          autocomplete="current-password"
+        />
+      </div>
+      <button type="submit" [disabled]="loading" class="btn-submit">
+        <span *ngIf="!loading">Log in</span>
+        <span *ngIf="loading" class="spinner"></span>
+      </button>
+      <p class="error" *ngIf="error">{{ error }}</p>
+    </form>
+  </div>
+</div>
