@@ -110,8 +110,6 @@ if (app.Environment.IsDevelopment())
 // Middlewares
 app.UseHttpsRedirection();
 
-app.UseStaticFiles();
-
 app.UseCors("AllowAngular"); 
 
 app.UseAuthentication();
