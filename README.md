@@ -1,4 +1,4 @@
-<img width="1465" height="739" alt="Знімок екрана 2026-04-14 о 19 51 37" src="https://github.com/user-attachments/assets/a5004b58-4bad-40df-a000-12a89059ca8c" /># ⚡ SNIP — URL Platform
+# ⚡ SNIP — URL Platform
 
 **SNIP** is a fullstack URL shortening platform with authentication, link management, and analytics.
 Built as a real-world project to demonstrate backend, frontend, and DevOps skills.
