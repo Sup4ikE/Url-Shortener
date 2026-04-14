@@ -1,66 +1,64 @@
-# 🔗 URL Shortener
+# ⚡ SNIP — URL Platform
 
-Fullstack web application for shortening URLs with authentication.
+**SNIP** is a fullstack URL shortening platform with authentication, link management, and analytics.
+Built as a real-world project to demonstrate backend, frontend, and DevOps skills.
+
+---
 
 ## 🚀 Tech Stack
 
-### Backend
+### 🧠 Backend
 
 * ASP.NET Core Web API
 * Entity Framework Core (Code First)
 * PostgreSQL
 * JWT Authentication
 
-### Frontend
+### 🎨 Frontend
 
 * Angular (latest)
 * Angular Router
 * HTTP Client
 
-### Infrastructure
+### ⚙️ Infrastructure
 
 * Docker & Docker Compose
-* Nginx (for frontend hosting & proxy)
+* Nginx (reverse proxy & static hosting)
 
 ---
 
 ## ✨ Features
 
-* 🔐 User authentication (login)
+* 🔐 Authentication (login system)
 * 🔗 Create short URLs
-* 📊 View URL statistics
-* 🔍 View detailed URL info
-* 📁 URL management
-* 🌐 SPA frontend with Angular
-* 🔁 API proxy через Nginx
+* 📊 Basic statistics tracking
+* 🔍 View detailed link info
+* 📁 Manage your URLs
+* 🌐 SPA frontend (Angular)
+* 🔁 Nginx API proxy
 
 ---
 
 ## 🏗️ Architecture
 
 ```
-Frontend (Angular)  →  Nginx  →  ASP.NET API  →  PostgreSQL
+Angular (SPA) → Nginx → ASP.NET Core API → PostgreSQL
 ```
 
-* Angular працює як SPA
-* Nginx:
-
-  * віддає фронт
-  * проксує `/api` на бекенд
-* API працює з базою через EF Core
+* Frontend served via Nginx
+* API requests proxied through `/api`
+* Backend handles business logic & persistence
 
 ---
 
 ## 🐳 Run with Docker
 
-### 1. Clone repo
+### 1. Clone repository
 
 ```
-git clone <your-repo-url>
-cd UrlShortener
+git clone https://github.com/your-username/snip-url-platform.git
+cd snip-url-platform
 ```
-
----
 
 ### 2. Run project
 
@@ -68,25 +66,18 @@ cd UrlShortener
 docker compose up --build
 ```
 
----
-
 ### 3. Open in browser
 
 * Frontend: http://localhost:4200
-* API: http://localhost:5005/swagger
+* Swagger: http://localhost:5005/swagger
 
 ---
 
-## 🔑 Test Credentials
+## 🔑 Demo Credentials
 
 ```
-Login: admin
-Password: admin
-```
-
-```
-Login: user
-Password: user
+admin / admin
+user / user
 ```
 
 ---
@@ -95,14 +86,14 @@ Password: user
 
 * PostgreSQL
 * Port: `5434`
-* DB: `url_shortener`
+* Database: `url_shortener`
 
-### Migrations
+### Run migrations
 
 ```
 dotnet ef database update \
-  --project UrlShortener.Infrastructure \
-  --startup-project UrlShortener.API
+  --project Snip.Infrastructure \
+  --startup-project Snip.Api
 ```
 
 ---
@@ -110,46 +101,32 @@ dotnet ef database update \
 ## 📂 Project Structure
 
 ```
-UrlShortener/
+snip-url-platform/
 │
-├── UrlShortener.API           # ASP.NET Core Web API
-├── UrlShortener.Infrastructure # EF Core, DbContext, migrations
-├── frontend                   # Angular app
+├── UrlShortener.Api
+├── UrlShortener.Core
+├── UrlShortener.Infrastructure
+├── UrlShortener.Tests
+├── frontend
 ├── docker-compose.yml
 ```
 
 ---
 
-## 🔥 Key Learnings
-
-* Docker container orchestration
-* EF Core migrations & seeding
-* Angular SPA routing
-* Nginx reverse proxy
-* Debugging real-world issues:
-
-  * caching problems
-  * database connection issues
-  * missing migrations
-
----
-
 ## 📌 Future Improvements
 
-* 🔐 JWT refresh tokens
-* 🧪 Unit tests
-* 📊 Analytics dashboard
-* 🌍 Deployment (VPS / cloud)
-* 🧱 Clean Architecture refactor
+* 🔐 Refresh tokens
+* 📊 Advanced analytics dashboard
+* ☁️ Cloud deployment (AWS / VPS)
 
 ---
 
 ## 👨‍💻 Author
 
-Oleg Pona
+**Oleg Pona**
 
 ---
 
-## ⭐ Notes
+## ⭐ About
 
-This project was built as a fullstack learning project to practice real-world development scenarios including Docker, API design, and frontend integration.
+This project was built as a hands-on fullstack application to simulate real production-like development workflows.
